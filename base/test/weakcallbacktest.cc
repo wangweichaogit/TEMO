@@ -1,5 +1,6 @@
 #include "WeakCallBack.h"
 #include <iostream>
+using namespace TEMO;
 
 using namespace std;
 

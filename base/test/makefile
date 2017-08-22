@@ -3,7 +3,7 @@
 src = $(wildcard *.cc)
 des = $(patsubst %.cc,%,$(src))
 CC = g++
-opt = -std=c++11
+opt = -std=c++11 -I ../
 lib = -lpthread
 end:$(des)
 %:%.cc

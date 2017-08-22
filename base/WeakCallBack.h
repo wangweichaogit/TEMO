@@ -9,6 +9,7 @@
 #include <memory>
 #include <iostream>
 
+namespace TEMO{
 	
 template<typename CLASS>
 class WeakCallBack
@@ -36,5 +37,7 @@ template<typename CLASS>
 WeakCallBack<CLASS> makeWeakCallBack(const std::shared_ptr<CLASS> &obj,void (CLASS::*func)() )
 {
 	return WeakCallBack<CLASS>(obj,func);
+}
+
 }
 #endif
