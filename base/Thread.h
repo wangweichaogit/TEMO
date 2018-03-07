@@ -15,7 +15,7 @@ class Thread
 public:
 	typedef std::function<void ()> ThreadFunc;
 	
-	Thread(const Thread::ThreadFunc &func):mThreadFunc(func),mThreadId(0),mBStarted(false),mBjoined(false) {}
+	Thread(const Thread::ThreadFunc &func,const string &name=string()):mThreadFunc(func),mThreadId(0),mBStarted(false),mBjoined(false),mName(name) {}
 	~Thread()
 	{
 		if (mBStarted && !mBjoined)
@@ -25,12 +25,16 @@ public:
 	}
 	void Start();
 	int  Join();
+	
+	bool Started() const { return mBStarted;}
+	const string &Name() const { return mName;}
 private:
 	static void* RunInThread(void *obj);
 	Thread(const Thread&) = delete;
 	Thread& operator=(const Thread&) = delete;
 private:
 	ThreadFunc mThreadFunc;
+	string     mName;
 	pthread_t  mThreadId;
 	bool       mBStarted;
 	bool       mBjoined;

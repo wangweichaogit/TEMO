@@ -33,8 +33,6 @@ pthread_once_t Singleton<T>::ponce_ = PTHREAD_ONCE_INIT;
 template<typename T>
 T* Singleton<T>::value_ = NULL;
 
-
-
 }
 
 

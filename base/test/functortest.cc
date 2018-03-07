@@ -39,7 +39,11 @@ void test()
 
 	for (int i=0;i<10;i++){
 		group.Add(1);
-		funtorlist.put(std::bind(myprint,std::ref(group),i));
+		int j=i;
+//		funtorlist.put(std::bind(myprint,std::ref(group),j));
+		funtorlist.put([&]{
+			myprint(std::ref(group),j);
+		});
 	}
 	group.Wait();	
 	cout<<"done"<<endl;

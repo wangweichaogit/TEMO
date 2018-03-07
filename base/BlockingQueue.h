@@ -6,7 +6,6 @@
 #include <deque>
 #include <assert.h>
 
-namespace TEMO{
 
 template <typename T>
 class BlockingQueue
@@ -18,15 +17,7 @@ class BlockingQueue
 		BlockingQueue(const BlockingQueue &queue) = delete;
 		BlockingQueue & operator=(BlockingQueue &queue) = delete;
 		
-		void put(const  T&t)
-		{
-			MutexLockGuard lock(mutex_);
-			queue_.push_back(t);
-			notEmpty_.notify_one();
-		}
-		
-		
-		void put(T&&t)
+		void put(T t)
 		{
 			MutexLockGuard lock(mutex_);
 			queue_.push_back(std::move(t));
@@ -58,5 +49,4 @@ class BlockingQueue
 		std::condition_variable notEmpty_;
 		std::deque<T> queue_;
 };
-}
 #endif

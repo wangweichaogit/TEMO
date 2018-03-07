@@ -1,4 +1,4 @@
-#include "BlockingQueue.h"
+#include "ThreadSafeQueue.h"
 #include <iostream>
 #include <thread>
 #include <chrono>
@@ -21,7 +21,7 @@ int main(int argc,const char *argv[])
 	std::vector<std::thread> inthreads;
 	std::vector<std::thread> outthreads;
 
-	BlockingQueue<int> queue;
+	ThreadSafeQueue<int> queue;
 	std::chrono::time_point<std::chrono::system_clock> time1=std::chrono::system_clock::now();	
 	
 	for(int i =0;i <outnumber;i++)
@@ -30,8 +30,7 @@ int main(int argc,const char *argv[])
 			int t;	
 			while(1)
 			{
-//				queue.pop(t);	
-				t = queue.take();
+				queue.pop(t);	
 				if(t==0)
 				{
 					printf("end\n");					
@@ -57,8 +56,7 @@ int main(int argc,const char *argv[])
 			}
 		  i = --number; 
 		}
-		//queue.push(i);
-		queue.put(i);
+		queue.push(i);
 	}
 //		std::this_thread::sleep_for(std::chrono::milliseconds(100));
 		}));
