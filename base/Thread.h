@@ -7,6 +7,7 @@
 #include <pthread.h>
 #include <functional>
 #include <assert.h>
+using std::string;
 
 namespace TEMO
 {
